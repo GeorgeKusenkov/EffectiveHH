@@ -16,7 +16,7 @@ interface Api {
     suspend fun getOffers(): HHResponseDTO
 }
 
-class ApiProvider (jsonReader: AssetJsonReader) {
+class ApiProvider (private val jsonReader: AssetJsonReader) {
     private val mockInterceptor = MockInterceptor(jsonReader)
 
     fun provideAviaRailsApi(): Api {

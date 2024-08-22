@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "EffectiveMobileProjectHH"
 include(":app")
 include(":core-api")
+include(":core-data")
+include(":feature-auth")

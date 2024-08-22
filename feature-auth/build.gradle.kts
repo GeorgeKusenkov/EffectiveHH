@@ -1,14 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.kotlin.serialization)
-
 }
 
 android {
-    namespace = "com.egasmith.core.api"
+    namespace = "com.egasmith.feature.auth"
     compileSdk = 34
 
     defaultConfig {
@@ -40,18 +36,8 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-
-    implementation (libs.converter.gson)
-    implementation(libs.retrofit)
-    implementation (libs.retrofit.adapters.result)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.retrofit2.kotlinx.serialization.converter)
-
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-
-//    implementation(libs.material)
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.junit)
-//    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
