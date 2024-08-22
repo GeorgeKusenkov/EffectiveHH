@@ -23,4 +23,6 @@ rootProject.name = "EffectiveMobileProjectHH"
 include(":app")
 include(":core-api")
 include(":core-data")
-include(":feature-auth")
+include(":feature-auth:login")
+include(":feature-auth:register")
+include(":core-ui")
