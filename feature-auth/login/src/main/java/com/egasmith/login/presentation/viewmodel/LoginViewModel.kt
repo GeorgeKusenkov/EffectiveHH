@@ -10,16 +10,30 @@ class LoginViewModel : ViewModel() {
     private val _state = MutableStateFlow<InputState>(InputState.Empty)
     val state: StateFlow<InputState> = _state.asStateFlow()
 
+    private val _isInputValid = MutableStateFlow(false)
+    val isInputValid: StateFlow<Boolean> = _isInputValid.asStateFlow()
+
+    private val _showError = MutableStateFlow(false)
+    val showError: StateFlow<Boolean> = _showError.asStateFlow()
+
     fun onInputChanged(input: String) {
         _state.value = if (input.isEmpty()) {
             InputState.Empty
         } else {
-            InputState.Filled(input, isValidInput(input))
+            InputState.Filled(input)
         }
+        _isInputValid.value = isValidInput(input)
+        _showError.value = false  // Сбрасываем ошибку при изменении ввода
     }
 
     fun onClearClick() {
         _state.value = InputState.Empty
+        _isInputValid.value = false
+        _showError.value = false
+    }
+
+    fun onContinueClick() {
+        _showError.value = !_isInputValid.value
     }
 
     private fun isValidInput(input: String): Boolean {
@@ -31,7 +45,6 @@ class LoginViewModel : ViewModel() {
     }
 
     private fun isValidPhoneNumber(phone: String): Boolean {
-        // Простая проверка: начинается с '+' и содержит от 10 до 15 цифр
         return phone.matches(Regex("""^\+\d{10,15}$"""))
     }
 }

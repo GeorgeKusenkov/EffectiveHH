@@ -1,4 +1,4 @@
-package com.egasmith.login.presentation.ui.login
+package com.egasmith.login.presentation.ui.blocks.empoyeesearch
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.egasmith.core.ui.ConfirmButton
+import com.egasmith.core.ui.GreenConfirmButton
 import com.egasmith.core.ui.InfoBlock
 import com.egasmith.core.ui.SimpleTitle
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
@@ -31,7 +31,7 @@ fun EmployeeSearchBlock() {
                     fontSize = 14.sp
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                ConfirmButton(text = stringResource(R.string.i_am_looking_for_employees))
+                GreenConfirmButton(text = stringResource(R.string.i_am_looking_for_employees))
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }

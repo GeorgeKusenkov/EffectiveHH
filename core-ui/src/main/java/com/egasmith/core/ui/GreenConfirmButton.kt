@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.egasmith.effectivemobileprojecthh.ui.theme.Green
 
 @Composable
-fun ConfirmButton(text: String, modifier: Modifier = Modifier) {
+fun GreenConfirmButton(text: String, modifier: Modifier = Modifier) {
     Button(
         modifier = modifier.fillMaxWidth(),
         onClick = {},
@@ -27,5 +27,5 @@ fun ConfirmButton(text: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun ConfirmButtonPreview() {
-    ConfirmButton("Button")
+    GreenConfirmButton("Button")
 }

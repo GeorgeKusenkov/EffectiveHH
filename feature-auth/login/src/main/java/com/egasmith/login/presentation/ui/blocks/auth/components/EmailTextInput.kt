@@ -1,7 +1,9 @@
-package com.egasmith.login.presentation.ui.components
+package com.egasmith.login.presentation.ui.blocks.auth.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
@@ -35,25 +37,37 @@ fun EmailPhoneTextInput(
     loginViewModel: LoginViewModel = viewModel()
 ) {
     val state by loginViewModel.state.collectAsState()
+    val showError by loginViewModel.showError.collectAsState()
     val isFocused = remember { mutableStateOf(false) }
     val focusManager = LocalFocusManager.current
 
-    OutlinedTextField(
-        value = getInputFieldValue(state),
-        onValueChange = { loginViewModel.onInputChanged(it) },
-        label = { Text(text = "Электронная почта или телефон", fontSize = 13.sp) },
-        modifier = Modifier.textInputModifier(isFocused),
-        keyboardOptions = TextInputKeyboardOptions(),
-        leadingIcon = LeadingIcon(state, isFocused.value),
-        trailingIcon = {
-            TrailingIcon(state, isFocused.value, onClear = {
-                loginViewModel.onClearClick()
-                focusManager.clearFocus()
-            })
-        },
-        colors = textFieldColors(),
-        shape = RoundedCornerShape(14.dp)
-    )
+    Column {
+        OutlinedTextField(
+            value = getInputFieldValue(state),
+            onValueChange = { loginViewModel.onInputChanged(it) },
+            label = { Text(text = "Электронная почта или телефон", fontSize = 13.sp) },
+            modifier = Modifier.textInputModifier(isFocused),
+            keyboardOptions = TextInputKeyboardOptions(),
+            leadingIcon = LeadingIcon(state, isFocused.value),
+            trailingIcon = {
+                TrailingIcon(state, isFocused.value, onClear = {
+                    loginViewModel.onClearClick()
+                    focusManager.clearFocus()
+                })
+            },
+            colors = textFieldColors(showError),
+            shape = RoundedCornerShape(14.dp),
+            isError = showError
+        )
+        if (showError) {
+            Text(
+                text = "Вы ввели неверный e-mail или телефон",
+                color = Color.Red,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+            )
+        }
+    }
 }
 
 @Composable
@@ -83,18 +97,20 @@ private fun getInputFieldValue(state: InputState): String {
     }
 }
 
-
-
 @Composable
-private fun textFieldColors() = OutlinedTextFieldDefaults.colors(
-    focusedBorderColor = Color.Transparent,
-    unfocusedBorderColor = Color.Transparent,
+private fun textFieldColors(isError: Boolean) = OutlinedTextFieldDefaults.colors(
+    focusedBorderColor = if (isError) Color.Red else Color.Transparent,
+    unfocusedBorderColor = if (isError) Color.Red else Color.Transparent,
     disabledBorderColor = Color.Transparent,
     cursorColor = Color.White,
     focusedTextColor = Color.White,
     unfocusedTextColor = TintGray,
     unfocusedLabelColor = TintGray,
-    focusedLabelColor = TintGray
+    focusedLabelColor = TintGray,
+    errorBorderColor = Color.Red,
+    errorLabelColor = Color.Red,
+    errorCursorColor = Color.Red,
+    errorTextColor = Color.White
 )
 
 @Preview(showBackground = true)

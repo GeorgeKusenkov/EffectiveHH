@@ -42,29 +42,40 @@ android {
 }
 
 dependencies {
+    // Project modules
     implementation(project(":core-ui"))
     implementation(project(":core-data"))
     implementation(project(":core-api"))
     implementation(project(":feature-auth:login"))
+    implementation(project(":feature-main:Recommendations"))
+    implementation(project(":feature-main:SearchBar"))
+    implementation(project(":feature-main:vacancies"))
 
+    // AndroidX libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
 
+    // Hilt for Dependency Injection
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
+    // Compose UI libraries
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.runtime.livedata)
+
+    // Testing libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+
+    // Debugging tools
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

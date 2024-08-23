@@ -14,7 +14,7 @@ import com.egasmith.effectivemobileprojecthh.ui.theme.DarkBlue
 import com.egasmith.effectivemobileprojecthh.ui.theme.Gray
 
 @Composable
-fun ResponseButton(
+fun BlueConfirmButton(
     modifier: Modifier = Modifier,
     text: String,
     isActive: Boolean = false,
@@ -36,5 +36,5 @@ fun ResponseButton(
 @Preview(showBackground = true)
 @Composable
 fun NotActiveButtonPresent() {
-    ResponseButton(text = "Button", isActive = true)
+    BlueConfirmButton(text = "Button", isActive = true)
 }

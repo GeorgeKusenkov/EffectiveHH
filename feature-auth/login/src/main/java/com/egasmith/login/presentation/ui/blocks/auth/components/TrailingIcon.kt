@@ -1,4 +1,4 @@
-package com.egasmith.login.presentation.ui.components
+package com.egasmith.login.presentation.ui.blocks.auth.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
