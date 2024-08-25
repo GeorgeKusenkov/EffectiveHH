@@ -4,8 +4,6 @@ import android.content.Context
 import com.egasmith.core.api.Api
 import com.egasmith.core.api.ApiProvider
 import com.egasmith.core.api.utils.AssetJsonReader
-import com.egasmith.core.api.utils.MockInterceptor
-import com.google.gson.stream.JsonReader
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,6 +24,6 @@ object ApiModule {
     @Provides
     @Singleton
     fun provideApi(jsonReader: AssetJsonReader): Api {
-        return ApiProvider(jsonReader).provideAviaRailsApi()
+        return ApiProvider(jsonReader).provideApi()
     }
 }

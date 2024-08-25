@@ -19,7 +19,7 @@ interface Api {
 class ApiProvider (private val jsonReader: AssetJsonReader) {
     private val mockInterceptor = MockInterceptor(jsonReader)
 
-    fun provideAviaRailsApi(): Api {
+    fun provideApi(): Api {
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(mockInterceptor)
             .build()

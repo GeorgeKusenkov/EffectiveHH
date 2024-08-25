@@ -1,6 +1,10 @@
 package com.egasmith.core.api.models
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class HHResponseDTO(
-    val offerDTOS: List<OfferDTO>,
-    val vacancies: List<VacancyDTO>
+    @SerialName("offers") val offers: List<OfferDTO>,
+    @SerialName("vacancies") val vacancies: List<VacancyDTO>
 )

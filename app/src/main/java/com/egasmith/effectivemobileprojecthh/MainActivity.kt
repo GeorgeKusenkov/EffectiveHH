@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.login.presentation.ui.screen.LoginScreen
+import com.egasmith.presentation.vacancies.VacanciesScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +33,8 @@ class MainActivity : ComponentActivity() {
                     containerColor = Color(0xFF0C0C0C),
                     modifier = Modifier.fillMaxSize(),
                 ) { innerPadding ->
-                    LoginScreen(modifier = Modifier.padding(innerPadding))
+                    VacanciesScreen()
+//                    LoginScreen(modifier = Modifier.padding(innerPadding))
 //                    OffersList(
 //                        viewModel = viewModel,
 //                        modifier = Modifier.padding(innerPadding)

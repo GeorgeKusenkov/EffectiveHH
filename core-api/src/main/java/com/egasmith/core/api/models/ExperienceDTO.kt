@@ -1,6 +1,10 @@
 package com.egasmith.core.api.models
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ExperienceDTO(
-    val previewText: String,
-    val text: String
+    @SerialName("previewText") val previewText: String,
+    @SerialName("text") val text: String
 )

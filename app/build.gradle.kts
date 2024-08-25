@@ -47,9 +47,9 @@ dependencies {
     implementation(project(":core-data"))
     implementation(project(":core-api"))
     implementation(project(":feature-auth:login"))
-    implementation(project(":feature-main:Recommendations"))
-    implementation(project(":feature-main:SearchBar"))
-    implementation(project(":feature-main:vacancies"))
+    implementation(project(":feature-main:data"))
+    implementation(project(":feature-main:domain"))
+    implementation(project(":feature-main:presentation"))
 
     // AndroidX libraries
     implementation(libs.androidx.core.ktx)

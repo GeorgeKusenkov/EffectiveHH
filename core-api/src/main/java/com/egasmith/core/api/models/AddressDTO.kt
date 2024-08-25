@@ -1,7 +1,11 @@
 package com.egasmith.core.api.models
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class AddressDTO(
-    val house: String,
-    val street: String,
-    val town: String
+    @SerialName("house") val house: String,
+    @SerialName("street") val street: String,
+    @SerialName("town") val town: String
 )

@@ -1,5 +1,7 @@
 package com.egasmith.login.presentation.ui.blocks.auth.components
 
+import com.egasmith.effectivemobileprojecthh.ui.theme.TintGray
+
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
@@ -13,7 +15,7 @@ fun LeadingIcon(state: InputState, isFocused: Boolean): (@Composable () -> Unit)
             Icon(
                 painter = painterResource(id = R.drawable.ic_email),
                 contentDescription = "Email icon",
-                tint = com.egasmith.effectivemobileprojecthh.ui.theme.TintGray
+                tint = TintGray
             )
         }
     } else null
