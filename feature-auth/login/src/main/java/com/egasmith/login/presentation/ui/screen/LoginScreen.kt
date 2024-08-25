@@ -27,7 +27,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Top,
     ) {
         Spacer(modifier = Modifier.size(20.dp))
-        MainTitle(stringResource(id = R.string.login_to_account))
+        MainTitle(text = stringResource(id = R.string.login_to_account))
         Spacer(modifier = Modifier.weight(1f))
         AuthenticationBlock()
         Spacer(modifier = Modifier.size(20.dp))

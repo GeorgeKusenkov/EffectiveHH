@@ -23,7 +23,7 @@ class LoginViewModel : ViewModel() {
             InputState.Filled(input)
         }
         _isInputValid.value = isValidInput(input)
-        _showError.value = false  // Сбрасываем ошибку при изменении ввода
+        _showError.value = false
     }
 
     fun onClearClick() {

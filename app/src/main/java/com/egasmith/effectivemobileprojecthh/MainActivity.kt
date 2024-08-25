@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     containerColor = Color(0xFF0C0C0C),
                     modifier = Modifier.fillMaxSize(),
                 ) { innerPadding ->
-                    VacanciesScreen()
+                    VacanciesScreen(modifier = Modifier.padding(innerPadding))
 //                    LoginScreen(modifier = Modifier.padding(innerPadding))
 //                    OffersList(
 //                        viewModel = viewModel,
