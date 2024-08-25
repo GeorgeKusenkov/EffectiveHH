@@ -1,6 +1,5 @@
 package com.egasmith.presentation.vacancies
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +26,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.egasmith.core.common.UiState
 import com.egasmith.core.ui.GreenConfirmButton
 import com.egasmith.core.ui.InfoBlock
 import com.egasmith.effectivemobileprojecthh.ui.theme.Green
@@ -36,35 +36,14 @@ import com.egasmith.core.ui.R.drawable.ic_is_favorite_filled
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.effectivemobileprojecthh.ui.theme.Gray
 
-
 @Composable
 fun VacanciesScreen(viewModel: VacanciesViewModel = hiltViewModel()) {
-    val vacancies by viewModel.vacancies.collectAsState()
-    val isLoading by viewModel.isLoading.collectAsState()
-    val error by viewModel.error.collectAsState()
+    val vacanciesState by viewModel.vacanciesState.collectAsState()
 
-    when {
-        isLoading -> {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .wrapContentSize(Alignment.Center)
-            )
-        }
-
-        error != null -> {
-            Text(
-                text = error ?: "Unknown error",
-                color = Color.Red,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .wrapContentSize(Alignment.Center)
-            )
-        }
-
-        else -> {
-            VacancyList(vacancies = vacancies)
-        }
+    when (val state = vacanciesState) {
+        is UiState.Loading -> ShowCircularIndicator()
+        is UiState.Success -> VacancyList(vacancies = state.data)
+        is UiState.Error -> ErrorText(state)
     }
 }
 
@@ -81,65 +60,97 @@ fun VacancyList(vacancies: List<VacancyUI>) {
 fun VacancyItem(vacancy: VacancyUI) {
 
     InfoBlock(content = {
-        Column(modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth()) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(text = "Сейчас просматривает ${vacancy.lookingNumber} человек", color = Green)
-
-                FavoriteIcon(isFavorite = vacancy.isFavorite)
-            }
-            
+            HeaderItem(vacancy)
             SimpleText(text = vacancy.title)
-            SimpleText(text = vacancy.salary, textSize = 20.sp)
-            SimpleText(text = vacancy.town)
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                SimpleText(text = vacancy.company)
-                Spacer(modifier = Modifier.size(10.dp))
-                Icon(
-                    painter = painterResource(R.drawable.ic_ok),
-                    contentDescription = "Not Favorite",
-                    tint = Color.Unspecified
-                )
-            }
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_suitcase),
-                    contentDescription = "Not Favorite",
-                    tint = Color.Unspecified
-                )
-                Spacer(modifier = Modifier.size(10.dp))
-                SimpleText(text = "Опыт ${vacancy.experience}")
-            }
-
+            SalaryItem(vacancy)
+            CompanyCityAndName(vacancy)
+            ExperienceItem(vacancy)
             SimpleText(text = "Опубликовано ${vacancy.publishedDate}", color = Gray)
-
             GreenConfirmButton("Откликнуться")
         }
     }
     )
+}
 
+@Composable
+private fun CompanyCityAndName(vacancy: VacancyUI) {
+    Column(
+        verticalArrangement = Arrangement.Top,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        SimpleText(text = vacancy.town)
+        CompanyItem(vacancy)
+    }
+}
+
+@Composable
+private fun SalaryItem(vacancy: VacancyUI) {
+    SimpleText(text = vacancy.salary, textSize = 20.sp, modifier = Modifier.padding(top = 4.dp))
+}
+
+@Composable
+private fun ExperienceItem(vacancy: VacancyUI) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Icon(
+            painter = painterResource(R.drawable.ic_suitcase),
+            contentDescription = "Not Favorite",
+            tint = Color.Unspecified
+        )
+        Spacer(modifier = Modifier.size(8.dp))
+        SimpleText(text = "Опыт ${vacancy.experience}")
+    }
+}
+
+@Composable
+private fun CompanyItem(vacancy: VacancyUI) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        SimpleText(text = vacancy.company)
+        Spacer(modifier = Modifier.size(8.dp))
+        Icon(
+            painter = painterResource(R.drawable.ic_ok),
+            contentDescription = "Not Favorite",
+            tint = Color.Unspecified
+        )
+    }
+}
+
+@Composable
+private fun HeaderItem(vacancy: VacancyUI) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(text = "Сейчас просматривает ${vacancy.lookingNumber} человек", color = Green)
+        FavoriteIcon(isFavorite = vacancy.isFavorite)
+    }
 }
 
 @Composable
 fun SimpleText(
+    modifier: Modifier = Modifier,
     text: String,
     color: Color = Color.White,
     textSize: TextUnit = 14.sp
 ) {
-    Text(text, color = color, fontSize = textSize)
+    Text(
+        modifier = modifier,
+        text = text,
+        color = color,
+        fontSize = textSize
+    )
 }
 
 @Composable
@@ -154,6 +165,25 @@ fun FavoriteIcon(isFavorite: Boolean) {
     )
 }
 
+@Composable
+private fun ShowCircularIndicator() {
+    CircularProgressIndicator(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
+    )
+}
+
+@Composable
+private fun ErrorText(state: UiState.Error) {
+    Text(
+        text = state.message ?: "Ошибка при загрузке данных",
+        color = Color.Red,
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
+    )
+}
 
 @Preview(showBackground = true)
 @Composable

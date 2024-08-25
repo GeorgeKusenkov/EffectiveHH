@@ -2,6 +2,7 @@ package com.egasmith.presentation.vacancies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.egasmith.core.common.UiState
 import com.egasmith.domain.model.VacancyDomain
 import com.egasmith.domain.usecases.GetVacanciesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,14 +27,8 @@ data class VacancyUI(
 class VacanciesViewModel @Inject constructor(
     private val getVacanciesUseCase: GetVacanciesUseCase
 ) : ViewModel() {
-    private val _vacancies = MutableStateFlow<List<VacancyUI>>(emptyList())
-    val vacancies: StateFlow<List<VacancyUI>> = _vacancies.asStateFlow()
-
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
-
-    private val _error = MutableStateFlow<String?>(null)
-    val error: StateFlow<String?> = _error.asStateFlow()
+    private val _vacanciesState = MutableStateFlow<UiState<List<VacancyUI>>>(UiState.Loading)
+    val vacanciesState: StateFlow<UiState<List<VacancyUI>>> = _vacanciesState.asStateFlow()
 
     init {
         loadVacancies()
@@ -41,13 +36,16 @@ class VacanciesViewModel @Inject constructor(
 
     private fun loadVacancies() {
         viewModelScope.launch {
-            _isLoading.value = true
+            _vacanciesState.value = UiState.Loading
             getVacanciesUseCase.execute()
                 .collect { result ->
-                    _isLoading.value = false
                     result.fold(
-                        onSuccess = { _vacancies.value = it.map { vacancy -> vacancy.toUIModel() } },
-                        onFailure = { _error.value = it.message }
+                        onSuccess = { vacancies ->
+                            _vacanciesState.value = UiState.Success(vacancies.map { it.toUIModel() })
+                        },
+                        onFailure = { error ->
+                            _vacanciesState.value = UiState.Error(error.message)
+                        }
                     )
                 }
         }
