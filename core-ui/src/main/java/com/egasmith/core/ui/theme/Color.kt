@@ -1,4 +1,4 @@
-package com.egasmith.effectivemobileprojecthh.ui.theme
+package com.egasmith.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

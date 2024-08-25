@@ -8,28 +8,27 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import com.egasmith.effectivemobileprojecthh.ui.theme.Black
-import com.egasmith.effectivemobileprojecthh.ui.theme.Pink40
-import com.egasmith.effectivemobileprojecthh.ui.theme.Pink80
-import com.egasmith.effectivemobileprojecthh.ui.theme.Purple40
-import com.egasmith.effectivemobileprojecthh.ui.theme.Purple80
-import com.egasmith.effectivemobileprojecthh.ui.theme.PurpleGrey40
-import com.egasmith.effectivemobileprojecthh.ui.theme.PurpleGrey80
 import com.egasmith.effectivemobileprojecthh.ui.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Green,           // Primary color used for accents like buttons
+    secondary = TintGray,      // Secondary color, less prominent, used for icons
+    background = Black,        // Main background color
+    surface = DarkGray,        // Card background color
+    onPrimary = Color.White,   // Text color on primary buttons
+    onSecondary = LightGray,   // Text color on secondary elements
+    onBackground = Color.White, // Primary text color on background
+    onSurface = Color.White      // Text color on card surface
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40,
-    background = Black,
-    surface = Black,
+//    background = Black,
+//    surface = Black,
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -49,15 +48,18 @@ fun EffectiveMobileProjectHHTheme(
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
+        val colorScheme = DarkColorScheme
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+//Оставим до лучших времён...
+//    val colorScheme = when {
+//        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+//            val context = LocalContext.current
+//            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+//        }
+//
+//        darkTheme -> DarkColorScheme
+//        else -> LightColorScheme
+//    }
 
     MaterialTheme(
         colorScheme = colorScheme,

@@ -23,31 +23,32 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.egasmith.core.common.UiState
-import com.egasmith.core.ui.BlueConfirmButton
-import com.egasmith.core.ui.GreenConfirmButton
+import com.egasmith.core.ui.buttons.BlueConfirmButton
+import com.egasmith.core.ui.buttons.GreenConfirmButton
 import com.egasmith.core.ui.InfoBlock
-import com.egasmith.core.ui.MainTitle
-import com.egasmith.effectivemobileprojecthh.ui.theme.Green
 import com.egasmith.core.ui.R
 import com.egasmith.core.ui.R.drawable.ic_is_favorite
 import com.egasmith.core.ui.R.drawable.ic_is_favorite_filled
+import com.egasmith.core.ui.text.ColoredText
+import com.egasmith.core.ui.text.GrayText
+import com.egasmith.core.ui.text.HeaderText
+import com.egasmith.core.ui.text.SalaryText
+import com.egasmith.core.ui.text.StandardText
+import com.egasmith.core.ui.text.VacancyText
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
-import com.egasmith.effectivemobileprojecthh.ui.theme.Gray
 
 @Composable
 fun VacanciesScreen(modifier: Modifier, viewModel: VacanciesViewModel = hiltViewModel()) {
     val vacanciesState by viewModel.vacanciesState.collectAsState()
-        when (val state = vacanciesState) {
-            is UiState.Loading -> ShowCircularIndicator()
-            is UiState.Success -> VacancyList(modifier = modifier, vacancies = state.data)
-            is UiState.Error -> ErrorText(state)
+
+    when (val state = vacanciesState) {
+        is UiState.Loading -> ShowCircularIndicator()
+        is UiState.Success -> VacancyList(modifier = modifier, vacancies = state.data)
+        is UiState.Error -> ErrorText(state)
     }
 }
 
@@ -65,11 +66,7 @@ fun VacancyList(modifier: Modifier = Modifier, vacancies: List<VacancyUI>) {
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             item {
-                MainTitle(
-                    modifier = Modifier.padding(0.dp, 10.dp),
-                    text = "Вакансии для вас",
-                    fontWeight = FontWeight.Bold
-                )
+                HeaderText(text = "Вакансии для вас")
             }
 
             items(vacancies.take(3)) { vacancy ->
@@ -97,11 +94,11 @@ fun VacancyItem(vacancy: VacancyUI) {
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             HeaderItem(vacancy)
-            SimpleText(text = vacancy.title, fontWeight = FontWeight.Bold, textSize = 16.sp)
-            SalaryItem(vacancy)
+            VacancyText(text = vacancy.title)
+            SalaryText(text = vacancy.salary)
             CompanyCityAndName(vacancy)
             ExperienceItem(vacancy)
-            SimpleText(text = "Опубликовано ${vacancy.publishedDate}", color = Gray)
+            GrayText(text = "Опубликовано ${vacancy.publishedDate}")
             GreenConfirmButton("Откликнуться")
         }
     }
@@ -114,14 +111,9 @@ private fun CompanyCityAndName(vacancy: VacancyUI) {
         verticalArrangement = Arrangement.Top,
         modifier = Modifier.fillMaxWidth()
     ) {
-        SimpleText(text = vacancy.town)
+        StandardText(text = vacancy.town)
         CompanyItem(vacancy)
     }
-}
-
-@Composable
-private fun SalaryItem(vacancy: VacancyUI) {
-    SimpleText(text = vacancy.salary, textSize = 20.sp, modifier = Modifier.padding(top = 4.dp))
 }
 
 @Composable
@@ -136,7 +128,7 @@ private fun ExperienceItem(vacancy: VacancyUI) {
             tint = Color.Unspecified
         )
         Spacer(modifier = Modifier.size(8.dp))
-        SimpleText(text = "Опыт ${vacancy.experience}")
+        StandardText(text = "Опыт ${vacancy.experience}")
     }
 }
 
@@ -146,7 +138,7 @@ private fun CompanyItem(vacancy: VacancyUI) {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
-        SimpleText(text = vacancy.company)
+        StandardText(text = vacancy.company)
         Spacer(modifier = Modifier.size(8.dp))
         Icon(
             painter = painterResource(R.drawable.ic_ok),
@@ -162,26 +154,9 @@ private fun HeaderItem(vacancy: VacancyUI) {
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = "Сейчас просматривает ${vacancy.lookingNumber} человек", color = Green)
+        ColoredText(text = "Сейчас просматривает ${vacancy.lookingNumber} человек")
         FavoriteIcon(isFavorite = vacancy.isFavorite)
     }
-}
-
-@Composable
-fun SimpleText(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color = Color.White,
-    textSize: TextUnit = 14.sp,
-    fontWeight: FontWeight = FontWeight.Normal
-) {
-    Text(
-        modifier = modifier,
-        text = text,
-        color = color,
-        fontSize = textSize,
-        fontWeight = fontWeight
-    )
 }
 
 @Composable
@@ -220,7 +195,6 @@ private fun ErrorText(state: UiState.Error) {
 @Composable
 fun VacancyItemPreview() {
     EffectiveMobileProjectHHTheme {
-//        VacanciesScreen()
         val vacancy = VacancyUI(
             1,
             "UI/UX Designer",
@@ -236,11 +210,7 @@ fun VacancyItemPreview() {
             modifier = Modifier.fillMaxSize(),
         ) { innerPadding ->
             Column {
-                MainTitle(
-                    modifier = Modifier.padding(0.dp, 10.dp),
-                    text = "Вакансии для вас",
-                    fontWeight = FontWeight.Bold
-                )
+                HeaderText(text = "Вакансии для вас",)
                 VacancyItem(vacancy)
             }
         }

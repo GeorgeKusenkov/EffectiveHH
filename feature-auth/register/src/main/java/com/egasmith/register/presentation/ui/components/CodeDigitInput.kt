@@ -26,8 +26,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.egasmith.effectivemobileprojecthh.ui.theme.LightGray
-import com.egasmith.effectivemobileprojecthh.ui.theme.TintGray
+import com.egasmith.core.ui.theme.LightGray
+import com.egasmith.core.ui.theme.TintGray
 
 @Composable
 fun CodeDigitInput(

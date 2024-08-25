@@ -27,8 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
-import com.egasmith.effectivemobileprojecthh.ui.theme.LightGray
-import com.egasmith.effectivemobileprojecthh.ui.theme.TintGray
+import com.egasmith.core.ui.theme.LightGray
+import com.egasmith.core.ui.theme.TintGray
 import com.egasmith.login.presentation.state.InputState
 import com.egasmith.login.presentation.viewmodel.LoginViewModel
 

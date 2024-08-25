@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.egasmith.effectivemobileprojecthh.ui.theme.DarkBlue
+import com.egasmith.core.ui.theme.DarkBlue
 
 
 @Composable

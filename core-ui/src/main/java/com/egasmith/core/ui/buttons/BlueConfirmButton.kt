@@ -1,4 +1,4 @@
-package com.egasmith.core.ui
+package com.egasmith.core.ui.buttons
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -9,9 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.egasmith.effectivemobileprojecthh.ui.theme.Blue
-import com.egasmith.effectivemobileprojecthh.ui.theme.DarkBlue
-import com.egasmith.effectivemobileprojecthh.ui.theme.Gray
+import com.egasmith.core.ui.theme.Blue
+import com.egasmith.core.ui.theme.DarkBlue
+import com.egasmith.core.ui.theme.Gray
 
 @Composable
 fun BlueConfirmButton(

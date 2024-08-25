@@ -21,9 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import androidx.compose.ui.platform.LocalFocusManager
-import com.egasmith.core.ui.BlueConfirmButton
-import com.egasmith.core.ui.SimpleTitle
-import com.egasmith.effectivemobileprojecthh.ui.theme.Black
+import com.egasmith.core.ui.buttons.BlueConfirmButton
+import com.egasmith.core.ui.text.HeaderText
+import com.egasmith.core.ui.theme.Black
 import com.egasmith.register.presentation.ui.components.CodeInputField
 
 @Composable
@@ -40,13 +40,12 @@ fun RegisterScreen(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        SimpleTitle("Отправили код на example@mail.ru")
+        HeaderText("Отправили код на example@mail.ru")
 
         Spacer(Modifier.height(16.dp))
 
         Text(
             text = "Напишите его, чтобы подтвердить, что это вы, а не кто-то другой входит в личный кабинет",
-            color = Color.White
         )
 
         Spacer(Modifier.height(12.dp))

@@ -1,6 +1,6 @@
 package com.egasmith.login.presentation.ui.blocks.auth.components
 
-import com.egasmith.effectivemobileprojecthh.ui.theme.TintGray
+import com.egasmith.core.ui.theme.TintGray
 
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable

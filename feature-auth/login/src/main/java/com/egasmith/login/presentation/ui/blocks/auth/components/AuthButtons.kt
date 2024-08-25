@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.egasmith.core.ui.BlueConfirmButton
+import com.egasmith.core.ui.buttons.BlueConfirmButton
 import com.egasmith.core.ui.NoBackgroundResponseButton
 import com.egasmith.login.R
 import com.egasmith.login.presentation.viewmodel.LoginViewModel
