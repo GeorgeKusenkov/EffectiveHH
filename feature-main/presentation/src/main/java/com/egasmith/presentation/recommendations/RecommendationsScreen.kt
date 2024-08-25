@@ -2,7 +2,7 @@ package com.egasmith.presentation.recommendations
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,12 +11,12 @@ import androidx.compose.ui.unit.dp
 import com.egasmith.presentation.R
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.presentation.recommendations.ui.items.SimpleRecommendationItem
-import com.egasmith.presentation.recommendations.ui.items.SimpleRecommendationItemWithAction
+import com.egasmith.presentation.recommendations.ui.items.SimpleRecommendationItemWithButton
 
 @Composable
 fun  RecommendationsScreen() {
     LazyRow(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxWidth(),
         contentPadding = PaddingValues(vertical = 10.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -29,7 +29,7 @@ fun  RecommendationsScreen() {
         }
 
         item {
-            SimpleRecommendationItemWithAction(
+            SimpleRecommendationItemWithButton(
                 text = "Поднять резюме в поиске",
                 icon = R.drawable.ic_resume_up,
                 description = "location icon"

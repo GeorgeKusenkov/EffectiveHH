@@ -1,5 +1,6 @@
 package com.egasmith.presentation.vacancies
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -46,14 +47,24 @@ fun VacanciesScreen(modifier: Modifier, viewModel: VacanciesViewModel = hiltView
     val vacanciesState by viewModel.vacanciesState.collectAsState()
 
     when (val state = vacanciesState) {
-        is UiState.Loading -> ShowCircularIndicator()
-        is UiState.Success -> VacancyList(modifier = modifier, vacancies = state.data)
-        is UiState.Error -> ErrorText(state)
+        is UiState.Loading -> {
+            Log.d("VacanciesScreen", "Loading state")
+            ShowCircularIndicator()
+        }
+        is UiState.Success -> {
+            Log.d("VacanciesScreen", "Success state with ${state.data.size} vacancies")
+            VacancyList(modifier = modifier, vacancies = state.data)
+        }
+        is UiState.Error -> {
+            Log.e("VacanciesScreen", "Error state: ${state.message}")
+            ErrorText(state)
+        }
     }
 }
 
 @Composable
 fun VacancyList(modifier: Modifier = Modifier, vacancies: List<VacancyUI>) {
+    Log.d("VacancyList", "Starting to render list with ${vacancies.size} vacancies")
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -66,16 +77,19 @@ fun VacancyList(modifier: Modifier = Modifier, vacancies: List<VacancyUI>) {
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             item {
+                Log.d("VacancyList", "Rendering header")
                 HeaderText(text = "Вакансии для вас")
             }
 
             items(vacancies.take(3)) { vacancy ->
+                Log.d("VacancyList", "Rendering vacancy: ${vacancy.title}")
                 VacancyItem(vacancy)
             }
         }
 
+        Log.d("VacancyList", "Rendering 'More' button")
         BlueConfirmButton(
-            text = "Ещё 143 вакансии",
+            text = "Ещё ${vacancies.size - 3} вакансии",
             isActive = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -86,6 +100,7 @@ fun VacancyList(modifier: Modifier = Modifier, vacancies: List<VacancyUI>) {
 
 @Composable
 fun VacancyItem(vacancy: VacancyUI) {
+    Log.d("VacancyItem", "Rendering vacancy: ${vacancy.title}")
     InfoBlock(content = {
         Column(
             modifier = Modifier

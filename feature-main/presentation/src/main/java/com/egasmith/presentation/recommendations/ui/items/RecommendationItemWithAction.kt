@@ -18,7 +18,7 @@ import com.egasmith.presentation.R
 import com.egasmith.presentation.recommendations.ui.text.RecommendationText
 
 @Composable
-fun SimpleRecommendationItemWithAction(
+fun SimpleRecommendationItemWithButton(
     text: String,
     icon: Int,
     description: String
@@ -46,7 +46,7 @@ fun SimpleRecommendationItemWithAction(
 @Composable
 fun SimpleRecommendationItemWithActionPreview() {
     EffectiveMobileProjectHHTheme {
-        SimpleRecommendationItemWithAction(
+        SimpleRecommendationItemWithButton(
             text = "Поднять резюме в поиске",
             icon = R.drawable.ic_resume_up,
             description = "location icon"

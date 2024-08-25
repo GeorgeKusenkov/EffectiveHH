@@ -1,5 +1,6 @@
 package com.egasmith.presentation.vacancies
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egasmith.core.common.UiState
@@ -41,9 +42,11 @@ class VacanciesViewModel @Inject constructor(
                 .collect { result ->
                     result.fold(
                         onSuccess = { vacancies ->
+                            Log.d("VacanciesViewModel", "Loaded ${vacancies.size} vacancies")
                             _vacanciesState.value = UiState.Success(vacancies.map { it.toUIModel() })
                         },
                         onFailure = { error ->
+                            Log.e("VacanciesViewModel", "Error loading vacancies", error)
                             _vacanciesState.value = UiState.Error(error.message)
                         }
                     )
