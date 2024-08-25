@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.egasmith.core.ui.InfoBlock
+import com.egasmith.core.ui.items.InfoBlock
 import com.egasmith.presentation.recommendations.ui.text.RecommendationText
 
 @Composable

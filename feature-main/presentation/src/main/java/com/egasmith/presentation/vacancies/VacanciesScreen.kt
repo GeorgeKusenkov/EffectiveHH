@@ -29,7 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.egasmith.core.common.UiState
 import com.egasmith.core.ui.buttons.BlueConfirmButton
 import com.egasmith.core.ui.buttons.GreenConfirmButton
-import com.egasmith.core.ui.InfoBlock
+import com.egasmith.core.ui.items.InfoBlock
 import com.egasmith.core.ui.R
 import com.egasmith.core.ui.R.drawable.ic_is_favorite
 import com.egasmith.core.ui.R.drawable.ic_is_favorite_filled

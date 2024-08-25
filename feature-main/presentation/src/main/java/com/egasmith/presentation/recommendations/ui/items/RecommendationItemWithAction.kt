@@ -11,11 +11,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.egasmith.core.ui.InfoBlock
+import com.egasmith.core.ui.items.InfoBlock
 import com.egasmith.core.ui.text.ColoredText
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.presentation.R
-import com.egasmith.presentation.recommendations.RecommendationsScreen
 import com.egasmith.presentation.recommendations.ui.text.RecommendationText
 
 @Composable

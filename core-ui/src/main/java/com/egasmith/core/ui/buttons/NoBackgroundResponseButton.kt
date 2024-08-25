@@ -1,4 +1,4 @@
-package com.egasmith.core.ui
+package com.egasmith.core.ui.buttons
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button

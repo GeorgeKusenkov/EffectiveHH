@@ -72,7 +72,8 @@ fun EmailPhoneTextInput(
 
 @Composable
 private fun Modifier.textInputModifier(isFocused: MutableState<Boolean>): Modifier =
-    this.fillMaxWidth()
+    this
+        .fillMaxWidth()
         .onFocusChanged { focusState ->
             isFocused.value = focusState.isFocused
         }
