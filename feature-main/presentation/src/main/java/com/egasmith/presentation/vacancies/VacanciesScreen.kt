@@ -41,6 +41,7 @@ import com.egasmith.core.ui.text.SalaryText
 import com.egasmith.core.ui.text.StandardText
 import com.egasmith.core.ui.text.VacancyText
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
+import com.egasmith.domain.model.Vacancy
 
 @Composable
 fun VacanciesScreen(modifier: Modifier, viewModel: VacanciesViewModel = hiltViewModel()) {
@@ -63,7 +64,7 @@ fun VacanciesScreen(modifier: Modifier, viewModel: VacanciesViewModel = hiltView
 }
 
 @Composable
-fun VacancyList(modifier: Modifier = Modifier, vacancies: List<VacancyUI>) {
+fun VacancyList(modifier: Modifier = Modifier, vacancies: List<Vacancy>) {
     Log.d("VacancyList", "Starting to render list with ${vacancies.size} vacancies")
     Column(
         modifier = modifier
@@ -99,7 +100,7 @@ fun VacancyList(modifier: Modifier = Modifier, vacancies: List<VacancyUI>) {
 }
 
 @Composable
-fun VacancyItem(vacancy: VacancyUI) {
+fun VacancyItem(vacancy: Vacancy) {
     Log.d("VacancyItem", "Rendering vacancy: ${vacancy.title}")
     InfoBlock(content = {
         Column(
@@ -121,7 +122,7 @@ fun VacancyItem(vacancy: VacancyUI) {
 }
 
 @Composable
-private fun CompanyCityAndName(vacancy: VacancyUI) {
+private fun CompanyCityAndName(vacancy: Vacancy) {
     Column(
         verticalArrangement = Arrangement.Top,
         modifier = Modifier.fillMaxWidth()
@@ -132,7 +133,7 @@ private fun CompanyCityAndName(vacancy: VacancyUI) {
 }
 
 @Composable
-private fun ExperienceItem(vacancy: VacancyUI) {
+private fun ExperienceItem(vacancy: Vacancy) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
@@ -148,7 +149,7 @@ private fun ExperienceItem(vacancy: VacancyUI) {
 }
 
 @Composable
-private fun CompanyItem(vacancy: VacancyUI) {
+private fun CompanyItem(vacancy: Vacancy) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
@@ -164,7 +165,7 @@ private fun CompanyItem(vacancy: VacancyUI) {
 }
 
 @Composable
-private fun HeaderItem(vacancy: VacancyUI) {
+private fun HeaderItem(vacancy: Vacancy) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
@@ -210,7 +211,7 @@ private fun ErrorText(state: UiState.Error) {
 @Composable
 fun VacancyItemPreview() {
     EffectiveMobileProjectHHTheme {
-        val vacancy = VacancyUI(
+        val vacancy = Vacancy(
             1,
             "UI/UX Designer",
             "Минск",

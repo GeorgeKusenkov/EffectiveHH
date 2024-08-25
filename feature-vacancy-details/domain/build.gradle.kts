@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.egasmith.data"
+    namespace = "com.egasmith.domain"
     compileSdk = 34
 
     defaultConfig {
@@ -35,12 +33,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-api"))
-    implementation(project(":feature-main:domain"))
-
-    // Hilt for Dependency Injection
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -1,6 +1,6 @@
 package com.egasmith.domain.model
 
-data class VacancyDomain(
+data class Vacancy(
     val lookingNumber: Int,
     val title: String,
     val town: String,

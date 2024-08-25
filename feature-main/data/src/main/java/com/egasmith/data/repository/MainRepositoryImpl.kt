@@ -1,9 +1,9 @@
 package com.egasmith.data.repository
 
-import android.util.Log
 import com.egasmith.core.api.Api
 import com.egasmith.core.api.models.VacancyDTO
-import com.egasmith.data.models.VacancyData
+import com.egasmith.domain.MainRepository
+import com.egasmith.domain.model.Vacancy
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,17 +14,17 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 class MainRepositoryImpl @Inject constructor(private val api: Api) : MainRepository {
-    override suspend fun getVacancies(): Flow<Result<List<VacancyData>>> = flow {
+    override suspend fun getVacancies(): Flow<Result<List<Vacancy>>> = flow {
         try {
             val offersDTO = api.getOffers()
-            emit(Result.success(offersDTO.vacancies.map { it.toDataModel() }))
+            emit(Result.success(offersDTO.vacancies.map { it.toDomain() }))
         } catch (e: Exception) {
             emit(Result.failure(e))
         }
     }
 
-    private fun VacancyDTO.toDataModel(): VacancyData {
-        return VacancyData(
+    private fun VacancyDTO.toDomain(): Vacancy {
+        return Vacancy(
             lookingNumber = lookingNumber,
             title = title,
             town = address.town,

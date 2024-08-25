@@ -35,8 +35,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature-main:data"))
-
     // Hilt for Dependency Injection
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
