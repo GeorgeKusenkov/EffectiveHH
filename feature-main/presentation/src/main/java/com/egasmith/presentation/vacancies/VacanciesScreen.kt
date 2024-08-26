@@ -48,24 +48,14 @@ fun VacanciesScreen(modifier: Modifier, viewModel: VacanciesViewModel = hiltView
     val vacanciesState by viewModel.vacanciesState.collectAsState()
 
     when (val state = vacanciesState) {
-        is UiState.Loading -> {
-            Log.d("VacanciesScreen", "Loading state")
-            ShowCircularIndicator()
-        }
-        is UiState.Success -> {
-            Log.d("VacanciesScreen", "Success state with ${state.data.size} vacancies")
-            VacancyList(modifier = modifier, vacancies = state.data)
-        }
-        is UiState.Error -> {
-            Log.e("VacanciesScreen", "Error state: ${state.message}")
-            ErrorText(state)
-        }
+        is UiState.Loading -> ShowCircularIndicator()
+        is UiState.Success -> VacancyList(modifier = modifier, vacancies = state.data)
+        is UiState.Error -> ErrorText(state)
     }
 }
 
 @Composable
 fun VacancyList(modifier: Modifier = Modifier, vacancies: List<Vacancy>) {
-    Log.d("VacancyList", "Starting to render list with ${vacancies.size} vacancies")
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -78,17 +68,13 @@ fun VacancyList(modifier: Modifier = Modifier, vacancies: List<Vacancy>) {
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             item {
-                Log.d("VacancyList", "Rendering header")
                 HeaderText(text = "Вакансии для вас")
             }
 
             items(vacancies.take(3)) { vacancy ->
-                Log.d("VacancyList", "Rendering vacancy: ${vacancy.title}")
                 VacancyItem(vacancy)
             }
         }
-
-        Log.d("VacancyList", "Rendering 'More' button")
         BlueConfirmButton(
             text = "Ещё ${vacancies.size - 3} вакансии",
             isActive = true,
@@ -101,23 +87,23 @@ fun VacancyList(modifier: Modifier = Modifier, vacancies: List<Vacancy>) {
 
 @Composable
 fun VacancyItem(vacancy: Vacancy) {
-    Log.d("VacancyItem", "Rendering vacancy: ${vacancy.title}")
-    InfoBlock(content = {
-        Column(
-            modifier = Modifier
-                .padding(8.dp, 16.dp)
-                .fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
-        ) {
-            HeaderItem(vacancy)
-            VacancyText(text = vacancy.title)
-            SalaryText(text = vacancy.salary)
-            CompanyCityAndName(vacancy)
-            ExperienceItem(vacancy)
-            GrayText(text = "Опубликовано ${vacancy.publishedDate}")
-            GreenConfirmButton("Откликнуться")
+    InfoBlock(
+        content = {
+            Column(
+                modifier = Modifier
+                    .padding(8.dp, 16.dp)
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                HeaderItem(vacancy)
+                VacancyText(text = vacancy.title)
+                SalaryText(text = vacancy.salary)
+                CompanyCityAndName(vacancy)
+                ExperienceItem(vacancy)
+                GrayText(text = "Опубликовано ${vacancy.publishedDate}")
+                GreenConfirmButton("Откликнуться")
+            }
         }
-    }
     )
 }
 
@@ -226,7 +212,7 @@ fun VacancyItemPreview() {
             modifier = Modifier.fillMaxSize(),
         ) { innerPadding ->
             Column {
-                HeaderText(text = "Вакансии для вас",)
+                HeaderText(text = "Вакансии для вас")
                 VacancyItem(vacancy)
             }
         }

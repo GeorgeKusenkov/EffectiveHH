@@ -13,11 +13,11 @@ fun StandardText(
     text: String,
     color: Color = MaterialTheme.colorScheme.onSurface,
     fontWeight: FontWeight = FontWeight.Normal,
-    lineHeight: TextUnit = TextUnit.Unspecified
+    lineHeight: TextUnit = 20.sp
 ) {
     Text(
         text = text,
-        fontSize = 14.sp,
+        fontSize = 15.sp,
         color = color,
         fontWeight = fontWeight,
         lineHeight = lineHeight

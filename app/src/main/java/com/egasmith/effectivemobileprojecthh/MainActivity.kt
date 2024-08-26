@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,9 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
-import com.egasmith.login.presentation.ui.screen.LoginScreen
 import com.egasmith.presentation.sreeen.MainScreen
-import com.egasmith.presentation.vacancies.VacanciesScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
