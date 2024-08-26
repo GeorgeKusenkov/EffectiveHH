@@ -47,9 +47,16 @@ dependencies {
     implementation(project(":core-data"))
     implementation(project(":core-api"))
     implementation(project(":feature-auth:login"))
+    implementation(project(":feature-auth:register"))
     implementation(project(":feature-main:data"))
     implementation(project(":feature-main:domain"))
     implementation(project(":feature-main:presentation"))
+    implementation(project(":feature-vacancy-details:data"))
+    implementation(project(":feature-vacancy-details:domain"))
+    implementation(project(":feature-vacancy-details:presentation"))
+    implementation(project(":feature-navigation"))
+
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     // AndroidX libraries
     implementation(libs.androidx.core.ktx)

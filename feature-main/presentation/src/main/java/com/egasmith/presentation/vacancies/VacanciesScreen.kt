@@ -1,6 +1,5 @@
 package com.egasmith.presentation.vacancies
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -42,9 +41,14 @@ import com.egasmith.core.ui.text.StandardText
 import com.egasmith.core.ui.text.VacancyText
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.domain.model.Vacancy
+import com.egasmith.presentation.recommendations.RecommendationsScreen
 
 @Composable
-fun VacanciesScreen(modifier: Modifier, viewModel: VacanciesViewModel = hiltViewModel()) {
+fun VacanciesScreen(
+    onVacancyClick: (String) -> Unit,
+    modifier: Modifier,
+    viewModel: VacanciesViewModel = hiltViewModel()
+) {
     val vacanciesState by viewModel.vacanciesState.collectAsState()
 
     when (val state = vacanciesState) {
@@ -68,20 +72,27 @@ fun VacancyList(modifier: Modifier = Modifier, vacancies: List<Vacancy>) {
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             item {
+                RecommendationsScreen()
+            }
+
+            item {
                 HeaderText(text = "Вакансии для вас")
             }
 
             items(vacancies.take(3)) { vacancy ->
                 VacancyItem(vacancy)
             }
+
+            item {
+                BlueConfirmButton(
+                    text = "Ещё ${vacancies.size - 3} вакансии",
+                    isActive = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 10.dp)
+                )
+            }
         }
-        BlueConfirmButton(
-            text = "Ещё ${vacancies.size - 3} вакансии",
-            isActive = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 10.dp)
-        )
     }
 }
 
@@ -198,6 +209,7 @@ private fun ErrorText(state: UiState.Error) {
 fun VacancyItemPreview() {
     EffectiveMobileProjectHHTheme {
         val vacancy = Vacancy(
+            "1",
             1,
             "UI/UX Designer",
             "Минск",

@@ -19,17 +19,24 @@ import com.egasmith.login.presentation.ui.blocks.auth.AuthenticationBlock
 import com.egasmith.login.presentation.ui.blocks.empoyeesearch.EmployeeSearchBlock
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen(
+    modifier: Modifier = Modifier,
+    onContinueClick: (String) -> Unit
+) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(20.dp, 25.dp),
+            .padding(0.dp, 25.dp),
         verticalArrangement = Arrangement.Top,
     ) {
         Spacer(modifier = Modifier.size(20.dp))
         HeaderText(text = stringResource(id = R.string.login_to_account))
         Spacer(modifier = Modifier.weight(1f))
-        AuthenticationBlock()
+        AuthenticationBlock(
+            onContinueClick = { email ->
+                onContinueClick(email)
+            }
+        )
         Spacer(modifier = Modifier.size(20.dp))
         EmployeeSearchBlock()
         Spacer(modifier = Modifier.weight(1f))
@@ -48,6 +55,6 @@ fun EmailTextInputPreview() {
 @Composable
 fun LoginScreenPreview() {
     EffectiveMobileProjectHHTheme {
-        LoginScreen()
+//        LoginScreen()
     }
 }

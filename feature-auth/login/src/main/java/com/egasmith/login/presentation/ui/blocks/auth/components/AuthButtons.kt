@@ -12,7 +12,11 @@ import com.egasmith.login.presentation.viewmodel.LoginViewModel
 
 
 @Composable
-fun AuthButtons(isInputValid: Boolean, loginViewModel: LoginViewModel) {
+fun AuthButtons(
+    isInputValid: Boolean,
+    loginViewModel: LoginViewModel,
+    onContinueClick: (String) -> Unit
+) {
     Row(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -23,7 +27,7 @@ fun AuthButtons(isInputValid: Boolean, loginViewModel: LoginViewModel) {
             onClick = {
                 loginViewModel.onContinueClick()
                 if (isInputValid) {
-                    // Навигация на экран "Вход 2"
+                    onContinueClick(loginViewModel.getEmail())
                 }
             }
         )

@@ -1,6 +1,5 @@
 package com.egasmith.domain.usecases
 
-
 import com.egasmith.domain.MainRepository
 import com.egasmith.domain.model.Vacancy
 import kotlinx.coroutines.flow.Flow

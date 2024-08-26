@@ -25,6 +25,7 @@ class MainRepositoryImpl @Inject constructor(private val api: Api) : MainReposit
 
     private fun VacancyDTO.toDomain(): Vacancy {
         return Vacancy(
+            id = id,
             lookingNumber = lookingNumber,
             title = title,
             town = address.town,

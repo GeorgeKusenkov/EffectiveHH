@@ -37,7 +37,7 @@ fun SimpleRecommendationItemWithButton(
 
                 Spacer(Modifier.size(12.dp))
                 RecommendationText(text)
-                ColoredText("Поднять")
+                ColoredText(text = "Поднять")
             }
         })
 }

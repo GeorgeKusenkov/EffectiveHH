@@ -21,7 +21,10 @@ import com.egasmith.login.presentation.ui.blocks.auth.components.AuthButtons
 import com.egasmith.login.presentation.viewmodel.LoginViewModel
 
 @Composable
-fun AuthenticationBlock(loginViewModel: LoginViewModel = viewModel()) {
+fun AuthenticationBlock(
+    loginViewModel: LoginViewModel = viewModel(),
+    onContinueClick: (String) -> Unit
+) {
     val isInputValid by loginViewModel.isInputValid.collectAsState()
 
     InfoBlock(
@@ -37,7 +40,13 @@ fun AuthenticationBlock(loginViewModel: LoginViewModel = viewModel()) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                AuthButtons(isInputValid, loginViewModel)
+                AuthButtons(
+                    isInputValid = isInputValid,
+                    loginViewModel = loginViewModel,
+                    onContinueClick = { email ->
+                        onContinueClick(email)
+                    }
+                )
 
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -49,6 +58,6 @@ fun AuthenticationBlock(loginViewModel: LoginViewModel = viewModel()) {
 @Composable
 fun AuthenticationBlockPreview() {
     EffectiveMobileProjectHHTheme {
-        AuthenticationBlock()
+//        AuthenticationBlock()
     }
 }

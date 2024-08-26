@@ -17,6 +17,7 @@ import javax.inject.Inject
 class VacanciesViewModel @Inject constructor(
     private val getVacanciesUseCase: GetVacanciesUseCase
 ) : ViewModel() {
+
     private val _vacanciesState = MutableStateFlow<UiState<List<Vacancy>>>(UiState.Loading)
     val vacanciesState: StateFlow<UiState<List<Vacancy>>> = _vacanciesState.asStateFlow()
 
@@ -31,11 +32,9 @@ class VacanciesViewModel @Inject constructor(
                 .collect { result ->
                     result.fold(
                         onSuccess = { vacancies ->
-                            Log.d("VacanciesViewModel", "Loaded ${vacancies.size} vacancies")
                             _vacanciesState.value = UiState.Success(vacancies)
                         },
                         onFailure = { error ->
-                            Log.e("VacanciesViewModel", "Error loading vacancies", error)
                             _vacanciesState.value = UiState.Error(error.message)
                         }
                     )

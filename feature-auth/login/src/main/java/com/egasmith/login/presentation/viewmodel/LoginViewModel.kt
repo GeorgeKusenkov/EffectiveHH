@@ -16,6 +16,13 @@ class LoginViewModel : ViewModel() {
     private val _showError = MutableStateFlow(false)
     val showError: StateFlow<Boolean> = _showError.asStateFlow()
 
+    fun getEmail(): String {
+        return when (val currentState = _state.value) {
+            is InputState.Filled -> currentState.input
+            else -> ""
+        }
+    }
+
     fun onInputChanged(input: String) {
         _state.value = if (input.isEmpty()) {
             InputState.Empty
