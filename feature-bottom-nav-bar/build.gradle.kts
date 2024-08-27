@@ -1,12 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.egasmith.feature.navigation"
+    namespace = "com.egasmith.feature.bottomnavbar"
     compileSdk = 34
 
     defaultConfig {
@@ -35,15 +34,19 @@ android {
 }
 
 dependencies {
-    // Hilt for Dependency Injection
-    implementation(libs.hilt.android)
-    implementation(libs.androidx.runtime.android)
+    implementation(project(":core-ui"))
 
-    ksp(libs.hilt.android.compiler)
+    // Compose UI libraries
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.runtime.livedata)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.runtime.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

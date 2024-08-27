@@ -5,8 +5,8 @@ import com.egasmith.core.ui.theme.TintGray
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
-import com.egasmith.login.R
 import com.egasmith.login.presentation.state.InputState
+import com.egasmith.core.ui.R
 
 @Composable
 fun LeadingIcon(state: InputState, isFocused: Boolean): (@Composable () -> Unit)? {

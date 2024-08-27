@@ -92,7 +92,7 @@ fun BottomSheetContent(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black.copy(alpha = 0.5f))
-            .clickable(onClick = onDismiss) // Закрываем при клике на фон
+            .clickable(onClick = onDismiss)
     ) {
         Column(
             modifier = Modifier

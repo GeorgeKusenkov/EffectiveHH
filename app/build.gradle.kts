@@ -66,6 +66,7 @@ dependencies {
 
     // Hilt for Dependency Injection
     implementation(libs.hilt.android)
+    implementation(project(":feature-bottom-nav-bar"))
     ksp(libs.hilt.android.compiler)
 
     // Compose UI libraries

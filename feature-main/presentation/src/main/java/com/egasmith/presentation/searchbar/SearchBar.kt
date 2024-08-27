@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.core.ui.theme.LightGray
 import com.egasmith.core.ui.theme.TintGray
-import com.egasmith.presentation.R
+import com.egasmith.core.ui.R
 
 
 @Composable

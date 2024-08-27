@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.egasmith.presentation.recommendations.RecommendationsScreen
 import com.egasmith.presentation.searchbar.SearchBar
 import com.egasmith.presentation.vacancies.VacanciesScreen
 
