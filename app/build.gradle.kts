@@ -59,17 +59,16 @@ dependencies {
     implementation(project(":feature-navigation"))
     implementation(project(":feature-bottom-nav-bar"))
 
-    implementation("androidx.navigation:navigation-compose:2.7.7")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0") // Add this line
-
     // AndroidX libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.compose)
     implementation(platform(libs.androidx.compose.bom))
 
     // Hilt for Dependency Injection
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
 
     // Compose UI libraries

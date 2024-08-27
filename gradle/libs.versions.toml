@@ -1,6 +1,7 @@
 [versions]
 # Build tools
 agp = "8.7.0-alpha07"
+hiltNavigationCompose = "1.2.0"
 kotlin = "2.0.10"
 ksp = "2.0.10-1.0.24"
 
@@ -15,15 +16,13 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 
 # Compose
-composeBom = "2024.06.00"
+composeBom = "2024.08.00"
 
 # Network
 retrofit = "2.11.0"
-converterKotlinxSerialization = "2.11.0"
 kotlin-serialization-json = "1.7.1"
 retrofit2-kotlinx-serialization-converter = "1.0.0"
 retrofitAdaptersResult = "1.0.9"
-mockwebserver = "4.9.1"
 
 # Database
 room = "2.6.1"
@@ -34,16 +33,14 @@ jetbrainsKotlinJvm = "2.0.10"
 appcompat = "1.7.0"
 material = "1.12.0"
 runtimeLivedata = "1.6.8"
-lifecycleViewmodelKtx = "2.6.2"
-lifecycleViewmodelAndroid = "2.8.4"
 runtimeAndroid = "1.6.8"
-storage = "1.5.0"
 navigationRuntimeKtx = "2.7.7"
 navigationCompose = "2.7.7"
 
 [libraries]
 # Core Android libraries
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -65,12 +62,10 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 
 # Network
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-converter-kotlinx-serialization = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "converterKotlinxSerialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2-kotlinx-serialization-converter" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 retrofit-adapters-result = { module = "com.github.skydoves:retrofit-adapters-result", version.ref = "retrofitAdaptersResult" }
-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mockwebserver" }
 
 # Database
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
@@ -82,10 +77,7 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
-androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
-androidx-lifecycle-viewmodel-android = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-android", version.ref = "lifecycleViewmodelAndroid" }
 androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
-androidx-storage = { group = "androidx.test.services", name = "storage", version.ref = "storage" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 

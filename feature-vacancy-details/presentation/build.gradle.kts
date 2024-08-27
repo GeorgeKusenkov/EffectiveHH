@@ -48,7 +48,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
 
     // Hilt for Dependency Injection
-    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation (libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
@@ -60,8 +60,8 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation (libs.androidx.lifecycle.runtime.ktx)
 
     // Testing libraries
     testImplementation(libs.junit)
