@@ -14,16 +14,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.egasmith.core.common.UiState
@@ -39,7 +40,6 @@ import com.egasmith.core.ui.text.HeaderText
 import com.egasmith.core.ui.text.SalaryText
 import com.egasmith.core.ui.text.StandardText
 import com.egasmith.core.ui.text.VacancyText
-import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.domain.model.Vacancy
 import com.egasmith.presentation.recommendations.RecommendationsScreen
 
@@ -64,6 +64,9 @@ fun VacancyList(
     vacancies: List<Vacancy>,
     onVacancyClick: (String) -> Unit
 ) {
+    // State to track if all vacancies should be shown
+    var showAllVacancies by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier.fillMaxSize()
     ) {
@@ -82,18 +85,24 @@ fun VacancyList(
                 HeaderText(text = "Вакансии для вас")
             }
 
-            items(vacancies.take(3)) { vacancy ->
+            items(if (showAllVacancies) vacancies else vacancies.take(3)) { vacancy ->
                 VacancyItem(vacancy, onVacancyClick)
             }
 
-            item {
-                BlueConfirmButton(
-                    text = "Ещё ${vacancies.size - 3} вакансии",
-                    isActive = true,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 10.dp)
-                )
+            // Кнопка появится если более 3х вакансий
+            if (vacancies.size > 3 && !showAllVacancies) {
+                item {
+                    BlueConfirmButton(
+                        text = "Ещё ${vacancies.size - 3} вакансии",
+                        isActive = true,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 10.dp),
+                        onClick = {
+                            showAllVacancies = true
+                        }
+                    )
+                }
             }
         }
     }
@@ -208,31 +217,3 @@ private fun ErrorText(state: UiState.Error) {
             .wrapContentSize(Alignment.Center)
     )
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun VacancyItemPreview() {
-//    EffectiveMobileProjectHHTheme {
-//        val vacancy = Vacancy(
-//            "1",
-//            1,
-//            "UI/UX Designer",
-//            "Минск",
-//            "Мобирикс",
-//            " от 1 года до 3 лет",
-//            "20 февраля",
-//            true,
-//            "1500-2900",
-//        )
-//        Scaffold(
-//            containerColor = Color(0xFF0C0C0C),
-//            modifier = Modifier.fillMaxSize(),
-//        ) { innerPadding ->
-//            Column {
-//                HeaderText(text = "Вакансии для вас")
-//                VacancyItem(vacancy)
-//            }
-//        }
-//
-//    }
-//}

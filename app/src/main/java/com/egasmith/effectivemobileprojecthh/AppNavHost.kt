@@ -31,7 +31,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class) // Install this module in the SingletonComponent
+@InstallIn(SingletonComponent::class)
 abstract class NavigationModule {
 
     @Binds
@@ -54,7 +54,7 @@ fun AppNavHost(
         modifier = Modifier.padding(innerPadding).padding(16.dp, 0.dp)
     ) {
         loginNavGraph(navigator)
-        mainNavGraph(navigator)
+        mainNavGraph(navigator, navController) // Pass navController here
         bottomNavGraph(navigator)
     }
 }
@@ -81,7 +81,7 @@ private fun NavGraphBuilder.loginNavGraph(navigator: Navigator) {
     }
 }
 
-private fun NavGraphBuilder.mainNavGraph(navigator: Navigator) {
+private fun NavGraphBuilder.mainNavGraph(navigator: Navigator, navController: NavHostController) {
     composable(NavScreen.Main.route) {
         MainScreen(
             onVacancyClick = { vacancyId ->
@@ -94,7 +94,7 @@ private fun NavGraphBuilder.mainNavGraph(navigator: Navigator) {
         arguments = listOf(navArgument("vacancyId") { type = NavType.StringType })
     ) { backStackEntry ->
         val vacancyId = backStackEntry.arguments?.getString("vacancyId") ?: ""
-        VacancyDetailsScreen(vacancyId = vacancyId)
+        VacancyDetailsScreen(vacancyId = vacancyId, navController = navController)
     }
 }
 

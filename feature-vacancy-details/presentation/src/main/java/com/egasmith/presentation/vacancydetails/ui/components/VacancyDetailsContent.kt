@@ -13,7 +13,6 @@ import com.egasmith.domain.model.VacancyDetails
 import com.egasmith.presentation.modalscreen.BottomSheetContent
 import com.egasmith.presentation.modalscreen.ModalState
 import com.egasmith.presentation.modalscreen.ResponseModalScreen
-import com.egasmith.presentation.vacancydetails.ui.components.appbar.TopAppBar
 import com.egasmith.presentation.vacancydetails.ui.components.main.VacancyDetailsList
 
 @Composable
@@ -22,10 +21,6 @@ fun VacancyDetailsContent(vacancy: VacancyDetails) {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column {
-
-            // Верхнее меню
-            TopAppBar()
-
             // Данные о вакансии
             VacancyDetailsList(
                 vacancy = vacancy,
