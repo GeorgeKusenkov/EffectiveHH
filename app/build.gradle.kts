@@ -30,11 +30,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "21"
     }
     buildFeatures {
         compose = true
@@ -46,6 +47,7 @@ dependencies {
     implementation(project(":core-ui"))
     implementation(project(":core-data"))
     implementation(project(":core-api"))
+    implementation(project(":core-common"))
     implementation(project(":feature-auth:login"))
     implementation(project(":feature-auth:register"))
     implementation(project(":feature-main:data"))
@@ -55,8 +57,10 @@ dependencies {
     implementation(project(":feature-vacancy-details:domain"))
     implementation(project(":feature-vacancy-details:presentation"))
     implementation(project(":feature-navigation"))
+    implementation(project(":feature-bottom-nav-bar"))
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0") // Add this line
 
     // AndroidX libraries
     implementation(libs.androidx.core.ktx)
@@ -66,7 +70,6 @@ dependencies {
 
     // Hilt for Dependency Injection
     implementation(libs.hilt.android)
-    implementation(project(":feature-bottom-nav-bar"))
     ksp(libs.hilt.android.compiler)
 
     // Compose UI libraries

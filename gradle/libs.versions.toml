@@ -38,6 +38,8 @@ lifecycleViewmodelKtx = "2.6.2"
 lifecycleViewmodelAndroid = "2.8.4"
 runtimeAndroid = "1.6.8"
 storage = "1.5.0"
+navigationRuntimeKtx = "2.7.7"
+navigationCompose = "2.7.7"
 
 [libraries]
 # Core Android libraries
@@ -84,6 +86,8 @@ androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifec
 androidx-lifecycle-viewmodel-android = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-android", version.ref = "lifecycleViewmodelAndroid" }
 androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
 androidx-storage = { group = "androidx.test.services", name = "storage", version.ref = "storage" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 # Build tools
