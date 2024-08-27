@@ -1,4 +1,4 @@
-package com.egasmith.effectivemobileprojecthh
+package com.egasmith.effectivemobileprojecthh.ui.main
 
 import androidx.lifecycle.ViewModel
 import com.egasmith.core.common.BottomNavViewModel

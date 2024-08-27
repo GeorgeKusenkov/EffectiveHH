@@ -1,4 +1,4 @@
-package com.egasmith.effectivemobileprojecthh
+package com.egasmith.effectivemobileprojecthh.ui.main
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.egasmith.effectivemobileprojecthh.navigation.AppNavHost
 import com.egasmith.feature.bottomnavbar.BottomNavigationBar
 import com.egasmith.feature.navigation.Navigator
 

@@ -45,7 +45,6 @@ android {
 dependencies {
     // Project modules
     implementation(project(":core-ui"))
-    implementation(project(":core-data"))
     implementation(project(":core-api"))
     implementation(project(":core-common"))
     implementation(project(":feature-auth:login"))

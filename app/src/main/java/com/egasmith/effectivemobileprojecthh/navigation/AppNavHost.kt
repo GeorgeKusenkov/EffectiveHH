@@ -1,4 +1,4 @@
-package com.egasmith.effectivemobileprojecthh
+package com.egasmith.effectivemobileprojecthh.navigation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -30,17 +30,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class NavigationModule {
-
-    @Binds
-    @Singleton
-    abstract fun bindNavigator(
-        navigatorImpl: NavigatorImpl
-    ): Navigator
-}
-
+//В идеале это надо вынести в отдельный модуль для навигации. Пока так.
 
 @Composable
 fun AppNavHost(
@@ -128,4 +118,15 @@ fun PlaceholderScreen(screenName: String) {
     ) {
         Text(text = screenName, style = MaterialTheme.typography.titleMedium)
     }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class NavigationModule {
+
+    @Binds
+    @Singleton
+    abstract fun bindNavigator(
+        navigatorImpl: NavigatorImpl
+    ): Navigator
 }
