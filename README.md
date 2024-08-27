@@ -18,10 +18,10 @@
 ## Стэк
 
 - Kotlin
+- Jetpack Compose
 - Retrofit
 - Coroutines
 - Flow
-- LiveData
 - Dagger
 - MVVM
 - Многомодульность
