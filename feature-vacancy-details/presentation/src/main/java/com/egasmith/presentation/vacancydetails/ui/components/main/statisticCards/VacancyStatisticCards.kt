@@ -1,4 +1,4 @@
-package com.egasmith.presentation.components
+package com.egasmith.presentation.vacancydetails.ui.components.main.statisticCards
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,7 +25,7 @@ import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.presentation.R
 
 @Composable
-fun VacancyStatistic(appliedNumber: Int, lookingNumber: Int) {
+fun VacancyStatisticCards(appliedNumber: Int, lookingNumber: Int) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
@@ -46,45 +46,6 @@ fun VacancyStatistic(appliedNumber: Int, lookingNumber: Int) {
     }
 }
 
-@Composable
-fun StatisticInfoBlock(
-    number: Int,
-    text: String,
-    contentDescription: String,
-    icon: Int,
-) {
-    InfoBlock(
-        modifier = Modifier.size(190.dp, 70.dp),
-        cardColor = DarkGreen,
-        content = {
-            Box(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Center)
-                        .padding(end = 32.dp)
-                ) {
-                    StandardText(
-                        text = "$number $text",
-                        lineHeight = 20.sp
-                    )
-                }
-                Icon(
-                    painter = painterResource(icon),
-                    contentDescription = contentDescription,
-                    tint = Color.Unspecified,
-                    modifier = Modifier
-                        .size(32.dp)
-                        .align(Alignment.TopEnd)
-                        .padding(top = 8.dp, end = 8.dp)
-                )
-            }
-        }
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
 fun ApplicantsInfoPreview() {
@@ -93,7 +54,7 @@ fun ApplicantsInfoPreview() {
             modifier = Modifier.fillMaxSize(),
             containerColor = Color(0xFF0C0C0C),
         ) { innerPadding ->
-            VacancyStatistic(10, 132)
+            VacancyStatisticCards(10, 132)
         }
 
     }

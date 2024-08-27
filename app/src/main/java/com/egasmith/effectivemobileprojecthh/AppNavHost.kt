@@ -12,7 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.egasmith.feature.navigation.NavScreen
 import com.egasmith.login.presentation.ui.screen.LoginScreen
-import com.egasmith.presentation.VacancyDetailsScreen
+import com.egasmith.presentation.vacancydetails.ui.screen.VacancyDetailsScreen
 import com.egasmith.presentation.sreeen.MainScreen
 import com.egasmith.register.presentation.ui.screen.RegisterScreen
 

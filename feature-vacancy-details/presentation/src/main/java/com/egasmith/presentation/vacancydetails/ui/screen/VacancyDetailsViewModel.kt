@@ -1,4 +1,4 @@
-package com.egasmith.presentation
+package com.egasmith.presentation.vacancydetails.ui.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,17 +17,13 @@ class VacancyDetailsViewModel @Inject constructor(
     private val getVacanciesDetailsUseCase: GetVacanciesDetailsUseCase
 ) : ViewModel() {
 
-    private val _vacancyDetails = MutableStateFlow<UiState<List<VacancyDetails>>>(UiState.Loading)
-    val vacancyDetails: StateFlow<UiState<List<VacancyDetails>>> = _vacancyDetails.asStateFlow()
+    private val _vacancyDetails = MutableStateFlow<UiState<VacancyDetails>>(UiState.Loading)
+    val vacancyDetails: StateFlow<UiState<VacancyDetails>> = _vacancyDetails.asStateFlow()
 
-    init {
-        loadVacancyDetails()
-    }
-
-    private fun loadVacancyDetails() {
+    fun loadVacancyDetails(vacancyId: String) {
         viewModelScope.launch {
             _vacancyDetails.value = UiState.Loading
-            getVacanciesDetailsUseCase.execute()
+            getVacanciesDetailsUseCase.execute(vacancyId)
                 .collect { result ->
                     result.fold(
                         onSuccess = {
@@ -37,7 +33,7 @@ class VacancyDetailsViewModel @Inject constructor(
                             _vacancyDetails.value = UiState.Error(it.message)
                         }
                     )
-            }
+                }
         }
     }
 }

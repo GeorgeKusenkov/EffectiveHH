@@ -46,23 +46,26 @@ import com.egasmith.presentation.recommendations.RecommendationsScreen
 @Composable
 fun VacanciesScreen(
     onVacancyClick: (String) -> Unit,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     viewModel: VacanciesViewModel = hiltViewModel()
 ) {
     val vacanciesState by viewModel.vacanciesState.collectAsState()
 
     when (val state = vacanciesState) {
         is UiState.Loading -> ShowCircularIndicator()
-        is UiState.Success -> VacancyList(modifier = modifier, vacancies = state.data)
+        is UiState.Success -> VacancyList(modifier = modifier, vacancies = state.data, onVacancyClick = onVacancyClick)
         is UiState.Error -> ErrorText(state)
     }
 }
 
 @Composable
-fun VacancyList(modifier: Modifier = Modifier, vacancies: List<Vacancy>) {
+fun VacancyList(
+    modifier: Modifier = Modifier,
+    vacancies: List<Vacancy>,
+    onVacancyClick: (String) -> Unit
+) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         LazyColumn(
             modifier = Modifier
@@ -80,7 +83,7 @@ fun VacancyList(modifier: Modifier = Modifier, vacancies: List<Vacancy>) {
             }
 
             items(vacancies.take(3)) { vacancy ->
-                VacancyItem(vacancy)
+                VacancyItem(vacancy, onVacancyClick)
             }
 
             item {
@@ -97,7 +100,7 @@ fun VacancyList(modifier: Modifier = Modifier, vacancies: List<Vacancy>) {
 }
 
 @Composable
-fun VacancyItem(vacancy: Vacancy) {
+fun VacancyItem(vacancy: Vacancy, onVacancyClick: (String) -> Unit) {
     InfoBlock(
         content = {
             Column(
@@ -112,7 +115,9 @@ fun VacancyItem(vacancy: Vacancy) {
                 CompanyCityAndName(vacancy)
                 ExperienceItem(vacancy)
                 GrayText(text = "Опубликовано ${vacancy.publishedDate}")
-                GreenConfirmButton("Откликнуться")
+                GreenConfirmButton("Откликнуться") {
+                    onVacancyClick(vacancy.id)
+                }
             }
         }
     )
@@ -204,30 +209,30 @@ private fun ErrorText(state: UiState.Error) {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun VacancyItemPreview() {
-    EffectiveMobileProjectHHTheme {
-        val vacancy = Vacancy(
-            "1",
-            1,
-            "UI/UX Designer",
-            "Минск",
-            "Мобирикс",
-            " от 1 года до 3 лет",
-            "20 февраля",
-            true,
-            "1500-2900",
-        )
-        Scaffold(
-            containerColor = Color(0xFF0C0C0C),
-            modifier = Modifier.fillMaxSize(),
-        ) { innerPadding ->
-            Column {
-                HeaderText(text = "Вакансии для вас")
-                VacancyItem(vacancy)
-            }
-        }
-
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun VacancyItemPreview() {
+//    EffectiveMobileProjectHHTheme {
+//        val vacancy = Vacancy(
+//            "1",
+//            1,
+//            "UI/UX Designer",
+//            "Минск",
+//            "Мобирикс",
+//            " от 1 года до 3 лет",
+//            "20 февраля",
+//            true,
+//            "1500-2900",
+//        )
+//        Scaffold(
+//            containerColor = Color(0xFF0C0C0C),
+//            modifier = Modifier.fillMaxSize(),
+//        ) { innerPadding ->
+//            Column {
+//                HeaderText(text = "Вакансии для вас")
+//                VacancyItem(vacancy)
+//            }
+//        }
+//
+//    }
+//}

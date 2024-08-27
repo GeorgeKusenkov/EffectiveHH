@@ -11,10 +11,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.egasmith.core.ui.theme.Green
 
 @Composable
-fun GreenConfirmButton(text: String, modifier: Modifier = Modifier) {
+fun GreenConfirmButton(
+    text: String,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
+) {
     Button(
         modifier = modifier.fillMaxWidth(),
-        onClick = {},
+        onClick = onClick,
         colors = ButtonDefaults.buttonColors(
             contentColor = Color.White,
             containerColor = Green
@@ -27,5 +31,5 @@ fun GreenConfirmButton(text: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun ConfirmButtonPreview() {
-    GreenConfirmButton("Button")
+    GreenConfirmButton("Button", onClick = {})
 }

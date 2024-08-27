@@ -8,8 +8,8 @@ import com.egasmith.domain.model.Company
 import com.egasmith.domain.model.Experience
 import com.egasmith.domain.model.Salary
 import com.egasmith.domain.model.VacancyDetails
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
@@ -17,45 +17,75 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class VacancyDetailsRepositoryImpl  @Inject constructor(private val api: Api): VacanciesDetailsRepository {
+class VacancyDetailsRepositoryImpl @Inject constructor(
+    private val api: Api,
+    private val vacancyMapper: VacancyMapper
+) : VacanciesDetailsRepository {
+
     override suspend fun getVacancies(): Flow<Result<List<VacancyDetails>>> = flow {
         try {
             val response = api.getOffers()
-            emit(Result.success(response.vacancies.map { it.toDomain() }))
+            val vacancies = response.vacancies.map { vacancyMapper.toDomain(it) }
+            emit(Result.success(vacancies))
         } catch (e: Exception) {
             emit(Result.failure(e))
         }
     }
 
-    private fun VacancyDTO.toDomain(): VacancyDetails {
+    override suspend fun getVacancyById(vacancyId: String): Flow<Result<VacancyDetails>> = flow {
+        try {
+            val response = api.getOffers()
+            val vacancy = response.vacancies
+                .firstOrNull { it.id == vacancyId }
+                ?.let { vacancyMapper.toDomain(it) }
+                ?: throw NoSuchElementException("Vacancy with ID $vacancyId not found")
+            emit(Result.success(vacancy))
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+}
+
+class VacancyMapper {
+    fun toDomain(vacancyDTO: VacancyDTO): VacancyDetails {
         return VacancyDetails(
-            id = id,
-            title = title,
-            salary = Salary(full = salary.full),
-            experience = Experience(text = experience.previewText),
-            schedules = schedules,
-            appliedNumber = appliedNumber,
-            lookingNumber = lookingNumber,
+            id = vacancyDTO.id,
+            title = vacancyDTO.title,
+            salary = Salary(full = vacancyDTO.salary.full),
+            experience = Experience(text = vacancyDTO.experience.previewText),
+            schedules = vacancyDTO.schedules,
+            appliedNumber = vacancyDTO.appliedNumber,
+            lookingNumber = vacancyDTO.lookingNumber,
             company = Company(
-                name = company,
-                isVerified = false, // Предполагаем, что этой информации нет в DTO
+                name = vacancyDTO.company,
                 address = Address(
-                    city = address.town,
-                    street = address.street,
-                    building = address.house
+                    city = vacancyDTO.address.town,
+                    street = vacancyDTO.address.street,
+                    building = vacancyDTO.address.house
                 ),
-                description = description
+                description = vacancyDTO.description
             ),
-            responsibilities = responsibilities,
-            isFavorite = isFavorite
+            responsibilities = vacancyDTO.responsibilities,
+            isFavorite = vacancyDTO.isFavorite
         )
     }
 }
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class VacancyDetailsRepositoryModule {
-    @Binds
+object VacancyDetailsRepositoryModule {
+
+    @Provides
     @Singleton
-    abstract fun bindVacancyDetailsRepository(repositoryImpl: VacancyDetailsRepositoryImpl): VacanciesDetailsRepository
+    fun provideVacancyDetailsRepository(
+        api: Api,
+        vacancyMapper: VacancyMapper
+    ): VacanciesDetailsRepository {
+        return VacancyDetailsRepositoryImpl(api, vacancyMapper)
+    }
+
+    @Provides
+    fun provideVacancyMapper(): VacancyMapper {
+        return VacancyMapper()
+    }
 }

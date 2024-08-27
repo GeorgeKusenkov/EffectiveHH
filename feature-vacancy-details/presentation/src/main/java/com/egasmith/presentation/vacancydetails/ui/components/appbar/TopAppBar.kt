@@ -1,4 +1,4 @@
-package com.egasmith.presentation.components
+package com.egasmith.presentation.vacancydetails.ui.components.appbar
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -23,7 +24,7 @@ import com.egasmith.presentation.R
 fun TopAppBar() {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth().height(50.dp),
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -35,19 +36,6 @@ fun TopAppBar() {
         Spacer(Modifier.size(18.dp))
         TopBarIcon(icon = com.egasmith.core.ui.R.drawable.ic_is_favorite_filled, description = "ic_is_favorite_filled")
     }
-}
-
-@Composable
-fun TopBarIcon(modifier: Modifier = Modifier, icon: Int, description: String) {
-    Icon(
-        modifier = modifier
-            .clickable {
-
-            },
-        painter = painterResource(icon),
-        contentDescription = description,
-        tint = Color.Unspecified
-    )
 }
 
 @Preview(showBackground = true)

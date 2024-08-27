@@ -1,4 +1,4 @@
-package com.egasmith.presentation.components
+package com.egasmith.presentation.vacancydetails.ui.components.main.header
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,6 +31,7 @@ fun VacancyHeader(
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun VacancyHeaderPreview() {
@@ -39,7 +40,12 @@ fun VacancyHeaderPreview() {
             modifier = Modifier.fillMaxSize(),
             containerColor = Color(0xFF0C0C0C),
         ) { innerPadding ->
-            VacancyHeader("Designer", "100", "10 лет", "Полная")
+            VacancyHeader(
+                "Designer",
+                "100",
+                "10 лет",
+                "Полная"
+            )
         }
 
     }

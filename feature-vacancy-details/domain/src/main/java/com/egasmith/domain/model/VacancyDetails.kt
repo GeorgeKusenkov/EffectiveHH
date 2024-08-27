@@ -23,7 +23,6 @@ data class Experience(
 
 data class Company(
     val name: String,
-    val isVerified: Boolean,
     val address: Address,
     val description: String?
 )
