@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -19,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalFocusManager
 import com.egasmith.core.ui.buttons.BlueConfirmButton
 import com.egasmith.core.ui.text.HeaderText
+import com.egasmith.core.ui.text.StandardText
 import com.egasmith.register.presentation.ui.components.CodeInputField
 import kotlinx.coroutines.delay
 
@@ -42,9 +42,7 @@ fun RegisterScreen(
     ) {
         HeaderText("Отправили код на $email")
 
-        Spacer(Modifier.height(16.dp))
-
-        Text(
+        StandardText(
             text = "Напишите его, чтобы подтвердить, что это вы, а не кто-то другой входит в личный кабинет",
         )
 

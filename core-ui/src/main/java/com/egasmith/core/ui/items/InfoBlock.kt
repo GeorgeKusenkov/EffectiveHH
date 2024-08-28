@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.egasmith.core.ui.pxToDp
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.core.ui.theme.DarkGray
 
@@ -25,7 +24,7 @@ fun InfoBlock(
     content: @Composable () -> Unit,
     cardColor: Color = DarkGray,
     cornerRadius: Dp = 8.dp,
-    contentPadding: PaddingValues = PaddingValues(24.pxToDp(), 16.pxToDp())
+    contentPadding: PaddingValues = PaddingValues(18.dp, 16.dp)
 ) {
     Card(
         modifier = modifier,

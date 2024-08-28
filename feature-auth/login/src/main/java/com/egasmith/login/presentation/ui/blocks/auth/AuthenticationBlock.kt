@@ -1,6 +1,7 @@
 package com.egasmith.login.presentation.ui.blocks.auth
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
@@ -34,7 +35,7 @@ fun AuthenticationBlock(
 
                 HeaderText(stringResource(R.string.work_find))
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
                 EmailPhoneTextInput(loginViewModel)
 
@@ -50,7 +51,8 @@ fun AuthenticationBlock(
 
                 Spacer(modifier = Modifier.height(16.dp))
             }
-        }
+        },
+        contentPadding = PaddingValues(16.dp, 0.dp)
     )
 }
 
@@ -58,6 +60,6 @@ fun AuthenticationBlock(
 @Composable
 fun AuthenticationBlockPreview() {
     EffectiveMobileProjectHHTheme {
-//        AuthenticationBlock()
+        AuthenticationBlock(onContinueClick = {})
     }
 }

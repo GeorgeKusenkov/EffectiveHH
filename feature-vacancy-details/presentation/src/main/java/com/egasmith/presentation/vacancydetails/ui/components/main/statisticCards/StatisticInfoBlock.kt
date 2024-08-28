@@ -2,6 +2,7 @@ package com.egasmith.presentation.vacancydetails.ui.components.main.statisticCar
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,11 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.egasmith.core.ui.items.InfoBlock
 import com.egasmith.core.ui.text.StandardText
 import com.egasmith.core.ui.theme.DarkGreen
+import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
+import com.egasmith.presentation.R
 
 @Composable
 fun StatisticInfoBlock(
@@ -40,7 +44,7 @@ fun StatisticInfoBlock(
                 ) {
                     StandardText(
                         text = "$number $text",
-                        lineHeight = 20.sp
+                        lineHeight = 18.sp
                     )
                 }
                 Icon(
@@ -50,9 +54,22 @@ fun StatisticInfoBlock(
                     modifier = Modifier
                         .size(32.dp)
                         .align(Alignment.TopEnd)
-                        .padding(top = 8.dp, end = 0.dp)
+                        .padding(top = 8.dp)
                 )
             }
-        }
+        },
+        contentPadding = PaddingValues(8.dp, 0.dp)
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun StatisticInfoBlock() {
+    EffectiveMobileProjectHHTheme {
+        StatisticInfoBlock(
+            11,
+            "человек уже откликнулось",
+            "", R.drawable.ic_loocking
+        )
+    }
 }

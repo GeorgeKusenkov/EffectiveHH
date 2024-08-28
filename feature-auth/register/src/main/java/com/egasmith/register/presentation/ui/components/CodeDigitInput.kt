@@ -40,7 +40,7 @@ fun CodeDigitInput(
 
     Box(
         modifier = Modifier
-            .size(width = 48.dp, height = 56.dp)
+            .size(54.dp)
             .background(LightGray, RoundedCornerShape(8.dp))
             .focusRequester(digitFieldFocusController)
             .onFocusChanged { isFocused.value = it.isFocused },

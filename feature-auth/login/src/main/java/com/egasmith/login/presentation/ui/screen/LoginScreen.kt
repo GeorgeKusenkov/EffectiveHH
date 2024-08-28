@@ -26,18 +26,23 @@ fun LoginScreen(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(0.dp, 25.dp),
+            .padding(0.dp, 45.dp),
         verticalArrangement = Arrangement.Top,
     ) {
-        Spacer(modifier = Modifier.size(20.dp))
+
+        //Заголовок экрана
         HeaderText(text = stringResource(id = R.string.login_to_account))
         Spacer(modifier = Modifier.weight(1f))
+
+        //Блок аутентификации
         AuthenticationBlock(
             onContinueClick = { email ->
                 onContinueClick(email)
             }
         )
         Spacer(modifier = Modifier.size(20.dp))
+
+        //Блок поиска сотрудников
         EmployeeSearchBlock()
         Spacer(modifier = Modifier.weight(1f))
     }
