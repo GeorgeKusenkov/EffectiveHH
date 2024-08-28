@@ -1,15 +1,14 @@
 package com.egasmith.presentation.searchbar
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -30,12 +29,14 @@ import androidx.compose.ui.unit.sp
 import com.egasmith.core.ui.theme.EffectiveMobileProjectHHTheme
 import com.egasmith.core.ui.theme.LightGray
 import com.egasmith.core.ui.theme.TintGray
-import com.egasmith.core.ui.R
-
+import com.egasmith.core.ui.theme.Black
 
 @Composable
-fun SearchBar() {
-
+fun SearchBar(
+    icon: Int,
+    placeholderText: String,
+    onLeadingIconClick: () -> Unit = {}
+) {
     var text by remember { mutableStateOf("") }
 
     Row(
@@ -50,7 +51,7 @@ fun SearchBar() {
             },
             placeholder = {
                 Text(
-                    text = "Должность, ключевые слова",
+                    text = placeholderText,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Normal,
                     color = Color.Gray
@@ -63,10 +64,10 @@ fun SearchBar() {
                 )
                 .height(50.dp)
                 .weight(1f),
-
             leadingIcon = {
                 Icon(
-                    painter = painterResource(R.drawable.ic_search),
+                    modifier = Modifier.clickable { onLeadingIconClick() },
+                    painter = painterResource(icon),
                     contentDescription = "Search Icon"
                 )
             },
@@ -99,8 +100,20 @@ private fun textFieldColors() = TextFieldDefaults.colors(
 
 @Preview(showBackground = true)
 @Composable
-fun SearchBarPreview() {
+fun ActiveSearchBarPreview() {
     EffectiveMobileProjectHHTheme {
-        SearchBar()
+        Column(Modifier.background(Black)) {
+//            ActiveSearchBar(vacancyNum = 3)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun InActiveSearchBarPreview() {
+    EffectiveMobileProjectHHTheme {
+        Column(Modifier.background(Black)) {
+            InActiveSearchBar()
+        }
     }
 }

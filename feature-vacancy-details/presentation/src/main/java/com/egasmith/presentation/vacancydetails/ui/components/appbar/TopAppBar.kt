@@ -25,7 +25,7 @@ fun TopAppBar(onBackClick: () -> Unit) {
 
         //На предыдщий экран
         TopBarIcon(
-            icon = R.drawable.ic_arrow_back,
+            icon = com.egasmith.core.ui.R.drawable.ic_arrow_back,
             description = "arrow back",
             modifier = Modifier.clickable {
                 onBackClick()
