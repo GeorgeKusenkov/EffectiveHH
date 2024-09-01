@@ -10,8 +10,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.egasmith.effectivemobileprojecthh.navigation.AppNavHost
+//import com.egasmith.effectivemobileprojecthh.navigation.AppNavHost
 import com.egasmith.feature.bottomnavbar.BottomNavigationBar
+import com.egasmith.feature.navigation.AppNavHost
 import com.egasmith.feature.navigation.Navigator
 
 @Composable

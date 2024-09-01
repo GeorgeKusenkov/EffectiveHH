@@ -1,4 +1,4 @@
-package com.egasmith.effectivemobileprojecthh.navigation
+package com.egasmith.feature.navigation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -16,13 +16,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.egasmith.feature.navigation.BottomNavScreen
-import com.egasmith.feature.navigation.NavScreen
-import com.egasmith.feature.navigation.Navigator
-import com.egasmith.feature.navigation.NavigatorImpl
 import com.egasmith.login.presentation.ui.screen.LoginScreen
-import com.egasmith.presentation.vacancydetails.ui.screen.VacancyDetailsScreen
 import com.egasmith.presentation.sreeen.MainScreen
+import com.egasmith.presentation.vacancydetails.ui.screen.VacancyDetailsScreen
 import com.egasmith.register.presentation.ui.screen.RegisterScreen
 import dagger.Binds
 import dagger.Module
@@ -30,7 +26,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-//В идеале это надо вынести в отдельный модуль для навигации. Пока так.
 
 @Composable
 fun AppNavHost(

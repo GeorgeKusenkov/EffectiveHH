@@ -17,6 +17,7 @@ espressoCore = "3.6.1"
 
 # Compose
 composeBom = "2024.08.00"
+composeNavigation = "2.8.0-rc01"
 
 # Network
 retrofit = "2.11.0"
@@ -79,7 +80,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
 
 [plugins]
 # Build tools
