@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.egasmith.core.common.humansWord
 import com.egasmith.core.ui.R
 import com.egasmith.core.ui.R.drawable.ic_is_favorite
 import com.egasmith.core.ui.R.drawable.ic_is_favorite_filled
@@ -108,7 +109,7 @@ private fun HeaderItem(vacancy: Vacancy) {
 
         // Не показываем если вакансию никто не сомтрит
         if (vacancy.lookingNumber > 0)  {
-            ColoredText(text = "Сейчас просматривает ${vacancy.lookingNumber} человек")
+            ColoredText(text = "Сейчас просматривает ${(vacancy.lookingNumber).humansWord()}")
         } else Spacer(Modifier.weight(1f))
 
         FavoriteIcon(isFavorite = vacancy.isFavorite)
