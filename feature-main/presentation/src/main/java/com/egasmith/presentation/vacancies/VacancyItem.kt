@@ -105,7 +105,12 @@ private fun HeaderItem(vacancy: Vacancy) {
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        ColoredText(text = "Сейчас просматривает ${vacancy.lookingNumber} человек")
+
+        // Не показываем если вакансию никто не сомтрит
+        if (vacancy.lookingNumber > 0)  {
+            ColoredText(text = "Сейчас просматривает ${vacancy.lookingNumber} человек")
+        } else Spacer(Modifier.weight(1f))
+
         FavoriteIcon(isFavorite = vacancy.isFavorite)
     }
 }

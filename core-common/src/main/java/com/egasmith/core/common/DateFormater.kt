@@ -1,8 +1,6 @@
 package com.egasmith.core.common
 
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 fun String.formatToReadableDate(): String {
