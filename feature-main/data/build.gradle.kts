@@ -41,6 +41,7 @@ dependencies {
 
     // Hilt for Dependency Injection
     implementation(libs.hilt.android)
+    implementation(project(":core-common"))
     ksp(libs.hilt.android.compiler)
 
     implementation(libs.androidx.core.ktx)

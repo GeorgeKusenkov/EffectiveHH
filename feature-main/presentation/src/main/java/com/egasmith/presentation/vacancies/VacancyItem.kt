@@ -42,7 +42,7 @@ fun VacancyItem(vacancy: Vacancy, onVacancyClick: (String) -> Unit) {
                 SalaryText(text = vacancy.salary)
                 CompanyCityAndName(vacancy)
                 ExperienceItem(vacancy)
-                GrayText(text = "Опубликовано ${vacancy.publishedDate}")
+                GrayText(text = vacancy.publishedDate)
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()

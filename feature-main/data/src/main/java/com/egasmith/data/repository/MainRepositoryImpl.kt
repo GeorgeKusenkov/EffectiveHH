@@ -2,6 +2,7 @@ package com.egasmith.data.repository
 
 import com.egasmith.core.api.Api
 import com.egasmith.core.api.models.VacancyDTO
+import com.egasmith.core.common.formatToReadableDate
 import com.egasmith.domain.MainRepository
 import com.egasmith.domain.model.Vacancy
 import dagger.Binds
@@ -31,7 +32,7 @@ class MainRepositoryImpl @Inject constructor(private val api: Api) : MainReposit
             town = address.town,
             company = company,
             experience = experience.previewText,
-            publishedDate = publishedDate,
+            publishedDate = publishedDate.formatToReadableDate(),
             isFavorite = isFavorite,
             salary = salary.full
         )
