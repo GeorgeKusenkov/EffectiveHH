@@ -1,9 +1,11 @@
 package com.egasmith.data.repository
 
 import com.egasmith.core.api.Api
+import com.egasmith.core.api.models.OfferDTO
 import com.egasmith.core.api.models.VacancyDTO
 import com.egasmith.core.common.formatToReadableDate
 import com.egasmith.domain.MainRepository
+import com.egasmith.domain.model.Recommendation
 import com.egasmith.domain.model.Vacancy
 import dagger.Binds
 import dagger.Module
@@ -24,6 +26,15 @@ class MainRepositoryImpl @Inject constructor(private val api: Api) : MainReposit
         }
     }
 
+    override suspend fun getRecommendations(): Flow<Result<List<Recommendation>>> = flow {
+        try {
+            val offersDTO = api.getOffers()
+            emit(Result.success(offersDTO.offers.map { it.toDomain() }))
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+
     private fun VacancyDTO.toDomain(): Vacancy {
         return Vacancy(
             id = id,
@@ -35,6 +46,15 @@ class MainRepositoryImpl @Inject constructor(private val api: Api) : MainReposit
             publishedDate = publishedDate.formatToReadableDate(),
             isFavorite = isFavorite,
             salary = salary.full
+        )
+    }
+
+    private fun OfferDTO.toDomain(): Recommendation {
+        return Recommendation(
+            id = id,
+            title = title,
+            buttonText = button?.text,
+            link = link
         )
     }
 }

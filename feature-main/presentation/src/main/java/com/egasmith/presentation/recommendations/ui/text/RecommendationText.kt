@@ -8,8 +8,9 @@ import com.egasmith.core.ui.text.StandardText
 @Composable
 fun RecommendationText(text: String) {
     StandardText(
-        text = text,
+        text = text.trimStart(),
         fontWeight = FontWeight.W500,
-        lineHeight = 18.sp
+        lineHeight = 18.sp,
+        fontSize = 12.sp
     )
 }

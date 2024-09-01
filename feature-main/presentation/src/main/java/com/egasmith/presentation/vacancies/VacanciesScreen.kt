@@ -2,25 +2,21 @@ package com.egasmith.presentation.vacancies
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.egasmith.core.common.UiState
 import com.egasmith.core.common.vacanciesWord
 import com.egasmith.core.ui.buttons.BlueConfirmButton
+import com.egasmith.core.ui.items.ErrorText
+import com.egasmith.core.ui.items.ShowCircularIndicator
 import com.egasmith.core.ui.text.HeaderText
 import com.egasmith.domain.model.Vacancy
 import com.egasmith.presentation.recommendations.RecommendationsScreen
@@ -92,23 +88,3 @@ fun VacancyList(
     }
 }
 
-
-@Composable
-private fun ShowCircularIndicator() {
-    CircularProgressIndicator(
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
-    )
-}
-
-@Composable
-private fun ErrorText(state: UiState.Error) {
-    Text(
-        text = state.message ?: "Ошибка при загрузке данных",
-        color = Color.Red,
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
-    )
-}
